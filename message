@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source colors
+
+# usage: status [string] [color]
+function status () {
+  echo -e "${2} ${1} ${Color_Off}"
+}
+
+function exit_status () {
+ if [ $2 == 0 ] ;  then
+  status "${1}" ${IGreen}
+ else
+  status "${1}" ${IRed}
+ fi
+}
