@@ -16,15 +16,14 @@
 # VERSION/
 #         include/*.h
 #         lib/ARCHOS/*.a
+include(util)
 
 set(SIM_MPI "" CACHE STRING "MPI implementation used for SimPartitionWrapper")
 if(SIM_MPI MATCHES "^$")
   message(FATAL_ERROR "SIM_MPI is not defined... libSimPartitionWrapper-$SIM_MPI.a should exist in the SimModSuite lib directory")
 endif()
 
-if(NOT "$ENV{SIM_LIB_DIR}" STREQUAL "")
-  set(SIMMETRIX_LIB_DIR $ENV{SIM_LIB_DIR})
-endif()
+checkSetParam(SIMMETRIX_LIB_DIR FALSE)
 
 macro(simLibCheck libs isRequired)
   foreach(lib ${libs})

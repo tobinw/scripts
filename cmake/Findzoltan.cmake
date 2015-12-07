@@ -12,7 +12,7 @@ find_path(ZOLTAN_INCLUDE_DIR zoltan.h
           PATH_SUFFIXES include)
 
 find_library(ZOLTAN_LIBRARY libzoltan.a zoltan 
-             HINTS ${PETSC_DIR}/${PETSC_ARCH} ${ZOLTAN DIR}
+             HINTS ${PETSC_DIR}/${PETSC_ARCH} ${ZOLTAN_DIR}
              PATH_SUFFIXES lib)
 
 find_package(parmetis REQUIRED)

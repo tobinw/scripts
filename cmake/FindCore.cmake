@@ -1,10 +1,9 @@
-# CORE_INCLUDE_DIRS
-# CORE_LIBS
-
 include(util)
 
 macro(pkgLibCheck pkgnm prefix libs isRequired)
   foreach(lib ${libs})
+    #message(STATUS "${prefix}_lib${lib}_PREFIX")
+    #message(STATUS "${${prefix}_lib${lib}_PREFIX}")
     set(pth ${${prefix}_lib${lib}_PREFIX})
     unset(find_lib CACHE)
     find_library(find_lib "${lib}" PATHS ${pth} PATH_SUFFIXES lib)
@@ -21,14 +20,14 @@ macro(pkgLibCheck pkgnm prefix libs isRequired)
   endforeach()
 endmacro(pkgLibCheck)
 
-checkSetParam(CORE_INSTALL_DIR)
+checkSetParam(CORE_DIR FALSE)
 
 find_package(PkgConfig)
-set(ENV{PKG_CONFIG_PATH} "$ENV{PKG_CONFIG_PATH}:${CORE_INSTALL_DIR}/lib/pkgconfig/")
+set(ENV{PKG_CONFIG_PATH} "$ENV{PKG_CONFIG_PATH}:${CORE_DIR}/lib/pkgconfig/")
 
 find_path(CORE_INCLUDE_DIRS
   NAMES apf.h gmi.h ma.h mth.h PCU.h
-  PATHS ${CORE_INSTALL_DIR}
+  PATHS ${CORE_DIR}
   PATH_SUFFIXES include)
 
 # set the libraries to look for depending on whether simmetrix is required/present

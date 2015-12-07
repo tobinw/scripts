@@ -1,8 +1,8 @@
 # todo (l) Bill : everything except petsc and blaslapack is optional
 
 include(util)
-checkSetParam(PETSC_DIR)
-checkSetParam(PETSC_ARCH)
+checkSetParam(PETSC_DIR TRUE)
+checkSetParam(PETSC_ARCH TRUE)
 
 find_package(PkgConfig)
 set(ENV{PKG_CONFIG_PATH} "${PETSC_DIR}/${PETSC_ARCH}/lib/pkgconfig/")
