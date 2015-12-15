@@ -1,0 +1,22 @@
+#!/bin/bash
+
+tmux new-session -d -s qbuild -n dev
+tmux split-window -h
+
+tmux select-pane 1
+tmux split-window -v
+
+tmux select-pane 0
+tmux send-keys 'q' C-m
+tmux send-keys 'q' C-m
+tmux send-keys 'cd $DEVROOT' C-m
+
+tmux select-pane 1
+tmux send-keys 'q' C-m
+tmux send-keys 'q' C-m
+tmux send-keys 'cd scratch-shared/results' C-m
+
+tmux select-pane 2
+tmux send-keys 'q' C-m
+tmux send-keys 'q' C-m
+tmux send-keys 'watch -n 30 squeue' C-m
