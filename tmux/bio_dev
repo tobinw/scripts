@@ -1,0 +1,16 @@
+#!/bin/bash
+
+tmux new-session -d -s bio -n dev
+tmux split-window -h
+
+tmux select-pane -t 1
+tmux split-window -v
+
+tmux select-pane -t 0
+tmux send-keys 'cd $DEVROOT/biotissue' C-m
+
+tmux select-pane -t 1
+tmux send-keys 'cd $DEVROOT/biotissue && watch -n 5 "svn status | grep \"M    \""' C-m
+
+tmux select-pane -t 2
+tmux send-keys 'cd $DEVROOT/biotissue && svn update .' C-m

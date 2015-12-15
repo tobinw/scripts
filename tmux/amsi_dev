@@ -1,0 +1,16 @@
+#!/bin/bash
+
+tmux new-session -d -s amsi -n dev
+tmux split-window -h
+
+tmux select-pane -t 1
+tmux split-window -v
+
+tmux select-pane -t 0
+tmux send-keys 'cd $DEVROOT/amsi_sim' C-m
+
+tmux select-pane -t 1
+tmux send-keys 'cd $DEVROOT/amsi_sim && watch -n 5 "git status"' C-m
+
+tmux select-pane -t 2
+tmux send-keys 'cd $DEVROOT/amsi_sim && git pull' C-m
