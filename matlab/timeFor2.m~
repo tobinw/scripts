@@ -1,0 +1,9 @@
+function [ time, state ] = timeFor( desc, iter_data )
+     pre_desc = strcat('PRE_', desc);
+     post_desc = strcat('POST_',desc);
+     pre_rw = iter_data(cellfun(@isnotempty,strfind(iter_data.Description,pre_desc)),:);
+     post_rw = iter_data(cellfun(@isnotempty,strfind(iter_data.Description,post_desc)),:);
+     time = post_rw.Time - pre_rw.Time;
+     state = pre_rw.State;
+end
+
