@@ -1,5 +1,5 @@
-#!/bin/bash -x
+#!/bin/bash
 
 SUBDIR=${BASH_ARGV[$RANDOM % $#]}
 FILE=`shuf -n1 -e ${SUBDIR}/*`
-echo "$FILE"
+echo "Randomly selected file: $FILE"

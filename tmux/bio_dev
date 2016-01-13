@@ -8,7 +8,7 @@ tmux split-window -v
 
 tmux select-pane -t 0
 tmux send-keys 'cd $DEVROOT/biotissue' C-m
-tmux send-keys 'cd $DEVROOT/biotissue/macro/src $DEVROOT/biotissue/micro_fo/src' C-m
+tmux send-keys 'select_random_file $DEVROOT/biotissue/macro/src $DEVROOT/biotissue/micro_fo/src' C-m
 
 tmux select-pane -t 1
 tmux send-keys 'cd $DEVROOT/biotissue && watch -n 5 "svn status | grep \"M    \""' C-m
@@ -27,7 +27,7 @@ tmux select-pane -t 0
 tmux send-keys 'cd $DEVROOT/biotissue_git' C-m
 
 tmux select-pane -t 1
-tmux send-keys 'cd $DEVROOT/biotissue_git && watch -n 5 "svn status | grep \"M    \""' C-m
+tmux send-keys 'cd $DEVROOT/biotissue_git && watch -n 5 "git status"' C-m
 
 tmux select-pane -t 2
 tmux send-keys 'cd $DEVROOT/biotissue_git && git pull .' C-m
