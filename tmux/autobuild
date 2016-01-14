@@ -29,3 +29,8 @@ tmux select-pane -t 5
 tmux send-keys 'cd $DEVROOT/amsi_sim/scripts && ./autobuild.sh' C-m
 tmux select-pane -t 6
 tmux send-keys 'cd $DEVROOT/amsi_sim/scripts && ./autobuild.sh Release' C-m
+
+tmux select-pane -t 3
+tmux send-keys 'cd $DEVROOT/biotissue_git/scripts && ./autobuild.sh' C-m
+tmux select-pane -t 7 
+tmux send-keys 'cd $DEVROOT/amsi_red/scripts && ./autobuild.sh' C-m
