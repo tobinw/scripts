@@ -1,0 +1,9 @@
+#!/bin/bash
+# Simple script to shut some things down at the end of the day.
+#  Be careful to save and commit work prior to calling this as it 
+#  does not gracefully close anything, instead it simply nukes 
+#  it from orbit.
+#  William Tobin Jan. 13 2016
+
+tmux kill-server
+#./tmux/autotest
