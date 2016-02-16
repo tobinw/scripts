@@ -1,0 +1,57 @@
+* TODO [4/4] run using 4 racks of AMOS BG/Q
+  - [X] generate 1m mesh
+  - [X] partition mesh to 1024 parts
+  - [X] move to AMOS
+  - [X] queue run
+* TODO [5/5] add follow force to simMacro attdefs
+  DEADLINE: <2016-02-05 Fri>
+  - [X] email cameron about language spec
+  - [X] develop data structure for following force
+  - [X] (re)name attributes appropriately
+  - [X] implement simple attribute reading interface in amsi
+  - [X] add test case for attribute information retrieval for ALL attributes
+* TODO [2/5] add fiber_type and fiber params to simMacro attdefs
+  DEADLINE: <2016-02-12 Fri>
+  - [X] design data structure for specification
+  - [X] implement data structure in simModSuite attdefs
+  - [ ] design functionality to parse info at macroscale and send to relevant micro-scale
+    - NOTE: should be standalone functionality in case we want to specify
+            info for single-scale micro sims using simmertix models (redev)
+  - [ ] implement functionality in single-scale code
+  - [ ] implement functionality in multi-scale code
+    - NOTE: should ammount to just adding to communication primitives
+* TODO [0/1] Split template implementation and declaration into xx.h and xx_impl.h files
+  - [ ] simmetrix attributes and boundary condition files in interface
+* TODO [3/5] rough draft of figures and captions for article
+  DEADLINE: <2016-02-03 Wed>
+  - [X] figure 1 high-level intro
+  - [X] figure 2 high-level amsi
+  - [X] figures specific amsi features figure
+  - [ ] figure n-1 Biotissue amsi usage
+  - [ ] figure n example concurrent parallel usage
+* TODO [0/5] Add regression tests for applicable test cases
+  - [ ] linear_elastic_regression
+  - [ ] nonlinear_elastic_regression
+  - [ ] partitioned_linear_elastic_regression
+  - [ ] uniform_adapt_regression?
+  - [ ] error_estimator_regression?*
+* DONE [10/10] get amsi test cases back into working order
+  DEADLINE: <2016-02-05 Fri>
+  - [X] task
+  - [X] task_manager
+  - [X] linear_elastic
+  - [X] nonlinear_elastic
+  - [X] partitioned_linear_elastic
+  - [X] dirichlet_test
+  - [X] uniform_adapt
+  - [X] error_estimator
+  - [X] control_service
+  - [X] reciprocal_comm
+* DONE [3/3] rework the amsi initialization system
+  DEADLINE: <2016-02-12 Fri>
+  - [X] figure out component-based alternative to objects which the user is forced to initialize
+  - [X] implement alternative
+  - [X] modify all executables and test cases to use new interface(s)
+
+* DONE [1/1] 1-file multi-scale comm test case  for 16k processes
+  - [X] determine if test is even required (16k element, 128 macro run)

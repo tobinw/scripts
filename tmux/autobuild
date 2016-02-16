@@ -1,36 +1,14 @@
 #!/bin/bash
 
 tmux new-session -d -s autobuild -n build
+tmux split-window -v
+
+tmux select-pane -t 1
 tmux split-window -h
 
 tmux select-pane -t 0
-tmux split-window -v
-tmux select-pane -t 0
-tmux split-window -v
-tmux select-pane -t 2
-tmux split-window -v
-
-tmux select-pane -t 4
-tmux split-window -v 
-tmux select-pane -t 4
-tmux split-window -v
-tmux select-pane -t 6
-tmux split-window -v
-
-tmux select-pane -t 0
-tmux send-keys 'top' C-m
-
+tmux send-keys 'emacs $DEVROOT/scripts/todo.org' C-m
 tmux select-pane -t 1
 tmux send-keys 'cd $DEVROOT/biotissue/scripts && ./autobuild.sh' C-m
 tmux select-pane -t 2
-tmux send-keys 'cd $DEVROOT/biotissue/scripts && ./autobuild.sh Release' C-m
-
-tmux select-pane -t 5
-tmux send-keys 'cd $DEVROOT/amsi_sim/scripts && ./autobuild.sh' C-m
-tmux select-pane -t 6
-tmux send-keys 'cd $DEVROOT/amsi_sim/scripts && ./autobuild.sh Release' C-m
-
-tmux select-pane -t 3
-tmux send-keys 'cd $DEVROOT/biotissue_git/scripts && ./autobuild.sh' C-m
-tmux select-pane -t 7 
-tmux send-keys 'cd $DEVROOT/amsi_red/scripts && ./autobuild.sh' C-m
+tmux send-keys 'cd $DEVROOT/amsi/scripts && ./autobuild.sh' C-m
