@@ -1,33 +1,7 @@
 #!/bin/bash
 
 tmux new-session -d -s amsi -n dev
-tmux split-window -h
-
-tmux select-pane -t 1
-tmux split-window -v
-
 tmux select-pane -t 0
-tmux send-keys 'cd $DEVROOT/amsi' C-m
+tmux send-keys 'cd ${DEVROOT}/amsi && git pull' C-m
 tmux send-keys 'select_random_file ${DEVROOT}/amsi/util ${DEVROOT}/amsi/meta ${DEVROOT}/amsi/interface ${DEVROOT}/amsi/control' C-m
 
-tmux select-pane -t 1
-tmux send-keys 'cd $DEVROOT/amsi && watch -n 5 "git status"' C-m
-
-tmux select-pane -t 2
-tmux send-keys 'cd $DEVROOT/amsi && git pull' C-m
-
-
-tmux new-session -d -s amsi_red -n dev
-tmux split-window -h
-
-tmux select-pane -t 1
-tmux split-window -v
-
-tmux select-pane -t 0
-tmux send-keys 'cd $DEVROOT/amsi_red' C-m
-
-tmux select-pane -t 1
-tmux send-keys 'cd $DEVROOT/amsi_red && watch -n 5 "git status"' C-m
-
-tmux select-pane -t 2
-tmux send-keys 'cd $DEVROOT/amsi_red && git pull' C-m

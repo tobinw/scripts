@@ -27,7 +27,7 @@ macro(checkSetParam varName isRequired)
     getEnv(${varName})
     emptyTest(${varName} isEmpty)
     if(${isEmpty} AND ${isRequired})
-      message(FATAL_ERROR 
+      message(FATAL_ERROR
         "${varName} is not defined or in the environment, please specify ${varName}")
     endif(${isEmpty} AND ${isRequired})
   endif(${isEmpty})
