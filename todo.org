@@ -6,14 +6,18 @@
   - [-] candidacy exam
     - [X] doctoral committee
     - [ ] presentation
-    - [-] document
-     - [ ] section drafts
+    - [X] document
+     - [X] section drafts
+     - [ ] generate up-to-date load balancing results
+     - [ ] put neuron figures into results
+     - [ ] revisions from Mark's notes
   - [ ] defense
     - [ ] presentation
     - [ ] thesis
     - [ ] signatures
 * TODO [0/1] Get better understanding of current failure mechanism of the code
   - [ ] look at failure points in Victor's runs on the bgq
+  - [ ] look at numerical reasons for divergence at higher strains
 * TODO [5/6] run using 4 racks of AMOS BG/Q
   - [X] generate 1m mesh
   - [X] partition mesh to 1024 parts
@@ -21,23 +25,49 @@
   - [X] queue run
   - [X] failed, reruning to determine if mesh size has an immediate impact
   - [ ] rerun with 128k mesh failed, so memory allocation error is related to parallel scaling
-* TODO [1/2] AMSI Ground-up refactor
-  - [X] Create new git repo
-  - [ ] Development plan
-* TODO [5/10] General code improvements
-  - [X] allow the subtype of the boundary conditions to look for to be queriable using the field type and the boundary condition type
-  - [ ] hide the usage of the simmetrix pACase in building the BCQueries, as well as their application (somehow)
-    - [ ] building the BCQueries might need to use some dynamic polymorphism to hide the extra data required for the simmetrix queries (the pACase)
-  - [X] different random seed depending on rank
-  - [ ] Split template implementation and declaration into xx.h and xx_impl.h files
+* TODO [8/16] General code improvements
+  - [X] eliminate all warnings in biotissue
   - [X] Get rid of the Analysis namespace
   - [X] rename Biotissue namespace to bio
+  - [X] different random seed depending on rank
+  - [X] allow the subtype of the boundary conditions to look for to be queriable using the field type and the boundary condition type
+  - [X] split nonlintissue into single-scale and multi-scale classes
+    - [X] create classes
+    - [X] create single-scale macro binary
+    - [X] localize multi-scale logs and features into multiscale class and single-scale features into single-scale
+    - [X] fix issue with convergence check on uninitialized petsc las
+    - [X] fix PCU switching issues in multiscale
+  - [X] look into suppressing tmpnam warnings
+    - not feasible, hard-coded into the c-lib, could objcopy with a strip command but that is WAY overboard
+  - [X] switch amsi::logs to  shared_ptrs and weak_ptrs for stream association
+  - [-] amsi::log changes
+    - [X] Refactor changes to amsi::Log, instead just create a multi-log subclass that handles sending output to multiple streams...
+    - [X] since the log is largely just a buffer, maybe just refactor the amsi::writeToStream function to handle a range  of streams instead of a single stream?
+    - [X] instead of changing amsi::Log, or adding range-based stream output, add a teestream which splits output to multiple streams
+    - [ ] figure out best way to utilize amsi::tee functionality
+    - [ ] develop method of associating amsi::log with a stream (can compose streams with hierarchy of tees to write to multiple simultaneously)
+    - [ ] figure out how to manage the lifetimes of fstreams related to an amsi::log.... and if using a teestream is even feasible or worthwhile...
+  - [ ] Look at all apf::MeshIterator loops to make sure Mesh::end(MeshIterator) is called
+  - [ ] hide the usage of the simmetrix pACase in building the BCQueries, as well as their application (somehow)
+    - [ ] building the BCQueries might need to use some dynamic polymorphism to hide the extra data required for the simmetrix queries (the pACase)
+  - [ ] Split template implementation and declaration into xx.h and xx_impl.h files
   - [ ] Rename the interface library to the analysis library
-  - [X] eliminate all warnings in biotissue
   - [ ] replace old sparse matrix implementation in biotissue with new one in amsi_red
    - [ ] make standalone lib with test cases
   - [ ] make sure that petsc is not allocating memory on the fly
   - [ ] pull the mesh adaptation stuff outside of the fea class, make them functions
+* TODO [1/6] Make FEA class obsolete
+  CLOCK: [2016-11-03 Thu 11:27]--[2016-11-03 Thu 19:58] =>  8:31
+  CLOCK: [2016-11-02 Wed 17:10]--[2016-11-02 Wed 17:58] =>  0:48
+  CLOCK: [2016-11-02 Wed 16:07]--[2016-11-02 Wed 16:46] =>  0:39
+  CLOCK: [2016-11-02 Wed 14:51]--[2016-11-02 Wed 15:23] =>  0:32
+  CLOCK: [2016-11-02 Wed 10:02]--[2016-11-02 Wed 14:08] =>  4:06
+  * [ ] replace with generic nonlinear analysis classes Iteration and Convergence operating on general fields, integrators, and lass
+  * [X] generate fields and numberings from simmodeler input
+  * [ ] refactor boundary condition application to work with new simmodeler specification
+  * [ ] develop algorithm to use bare integrators paired with appropriate field(s) to generate elemental systems for assembly
+  * [ ] creating integrators based on simmodler input, or even using simmodeler primitives under sufficiently abstract interfaces
+  * [ ] amsi::simIntegrator : public apf::Integrator ?
 * TODO [0/6] Add regression test cases
   - [ ] apf field operation test cases
   - [ ] linear_elastic_regression
@@ -45,42 +75,6 @@
   - [ ] partitioned_linear_elastic_regression
   - [ ] uniform_adapt_regression?
   - [ ] error_estimator_regression?
-* DONE [4/4] add fiber_type and fiber params to simMacro attdefs
-  - [X] design data structure for specification
-  - [X] implement data structure in simModSuite attdefs
-  - [X] design functionality to parse info at macroscale and send to relevant micro-scale
-    - NOTE: should be standalone functionality in case we want to specify
-            info for single-scale micro sims using simmertix models (redev)
-  - [X] implement functionality in multi-scale code
-    - NOTE: should ammount to just adding to communication primitives
-* DONE [8/8] add follow force to simMacro attdefs
-  - [X] email cameron about language spec
-  - [X] develop data structure for following force
-  - [X] (re)name attributes appropriately
-  - [X] implement simple attribute reading interface in amsi
-  - [X] add test case for attribute information retrieval for ALL attributes
-  - [X] make boundary condition test cases
-  - [X] compare boundary condition test cases
-  - [X] incorporate new boundary condition methods into finite element codes
-* DONE [10/10] get amsi test cases back into working order
-  DEADLINE: <2016-02-05 Fri>
-  - [X] task
-  - [X] task_manager
-  - [X] linear_elastic
-  - [X] nonlinear_elastic
-  - [X] partitioned_linear_elastic
-  - [X] dirichlet_test
-  - [X] uniform_adapt
-  - [X] error_estimator
-  - [X] control_service
-  - [X] reciprocal_comm
-* DONE [3/3] rework the amsi initialization system
-  DEADLINE: <2016-02-12 Fri>
-  - [X] figure out component-based alternative to objects which the user is forced to initialize
-  - [X] implement alternative
-  - [X] modify all executables and test cases to use new interface(s)
+* [ ] check valgrind output for memory leaks
+* [ ] check load balancing work to make certain things are still working for biotissue
 
-* DONE [1/1] 1-file multi-scale comm test case  for 16k processes
-  - [X] determine if test is even required (16k element, 128 macro run)
-
-* check valgrind output for memory leaks
