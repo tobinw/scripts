@@ -25,7 +25,11 @@
   - [X] queue run
   - [X] failed, reruning to determine if mesh size has an immediate impact
   - [ ] rerun with 128k mesh failed, so memory allocation error is related to parallel scaling
-* TODO [8/16] General code improvements
+* TODO [/] Use git directly on the BG/Q
+  - [ ] switch over AMSI to use git on Q
+  - [ ] move biotissue over to github
+  - [ ] switch biotissue to use git on Q
+* TODO [9/17] General code improvements
   - [X] eliminate all warnings in biotissue
   - [X] Get rid of the Analysis namespace
   - [X] rename Biotissue namespace to bio
@@ -47,6 +51,7 @@
     - [ ] figure out best way to utilize amsi::tee functionality
     - [ ] develop method of associating amsi::log with a stream (can compose streams with hierarchy of tees to write to multiple simultaneously)
     - [ ] figure out how to manage the lifetimes of fstreams related to an amsi::log.... and if using a teestream is even feasible or worthwhile...
+  - [X] the nnz in the sparse matrix structure can be easily pre-calculated for truss elements to assign a perfect array to hold the data.. no it CANT
   - [ ] Look at all apf::MeshIterator loops to make sure Mesh::end(MeshIterator) is called
   - [ ] hide the usage of the simmetrix pACase in building the BCQueries, as well as their application (somehow)
     - [ ] building the BCQueries might need to use some dynamic polymorphism to hide the extra data required for the simmetrix queries (the pACase)
@@ -57,11 +62,6 @@
   - [ ] make sure that petsc is not allocating memory on the fly
   - [ ] pull the mesh adaptation stuff outside of the fea class, make them functions
 * TODO [1/6] Make FEA class obsolete
-  CLOCK: [2016-11-03 Thu 11:27]--[2016-11-03 Thu 19:58] =>  8:31
-  CLOCK: [2016-11-02 Wed 17:10]--[2016-11-02 Wed 17:58] =>  0:48
-  CLOCK: [2016-11-02 Wed 16:07]--[2016-11-02 Wed 16:46] =>  0:39
-  CLOCK: [2016-11-02 Wed 14:51]--[2016-11-02 Wed 15:23] =>  0:32
-  CLOCK: [2016-11-02 Wed 10:02]--[2016-11-02 Wed 14:08] =>  4:06
   * [ ] replace with generic nonlinear analysis classes Iteration and Convergence operating on general fields, integrators, and lass
   * [X] generate fields and numberings from simmodeler input
   * [ ] refactor boundary condition application to work with new simmodeler specification
