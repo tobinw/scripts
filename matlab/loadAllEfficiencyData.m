@@ -9,4 +9,3 @@ function [ data ] = loadAllEfficiencyData( file_prefix, num_files )
                           'VariableNames',{'LoadStep','Iteration','Time','State','Description'});
   end
 end
-

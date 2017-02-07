@@ -25,11 +25,17 @@
   - [X] queue run
   - [X] failed, reruning to determine if mesh size has an immediate impact
   - [ ] rerun with 128k mesh failed, so memory allocation error is related to parallel scaling
-* TODO [/] Use git directly on the BG/Q
-  - [ ] switch over AMSI to use git on Q
-  - [ ] move biotissue over to github
-  - [ ] switch biotissue to use git on Q
-* TODO [9/17] General code improvements
+* TODO [4/5] Use git directly on the BG/Q
+  - [X] switch over AMSI to use git on Q
+  - [X] move biotissue over to github
+  - [X] switch biotissue to use git on Q
+  - [ ] build biotissue on the Q
+  - [ ] build amsi on the Q
+    - [ ] some C++11 library features need to be accounted for
+  - [X] build core on the Q
+    - [ ] victor needs to delete some files
+  - [X] move biotissue problems
+* TODO [12/20] General code improvements
   - [X] eliminate all warnings in biotissue
   - [X] Get rid of the Analysis namespace
   - [X] rename Biotissue namespace to bio
@@ -52,11 +58,15 @@
     - [ ] develop method of associating amsi::log with a stream (can compose streams with hierarchy of tees to write to multiple simultaneously)
     - [ ] figure out how to manage the lifetimes of fstreams related to an amsi::log.... and if using a teestream is even feasible or worthwhile...
   - [X] the nnz in the sparse matrix structure can be easily pre-calculated for truss elements to assign a perfect array to hold the data.. no it CANT
+  - [X] Rename the interface library to the analysis library
+  - [X] remove the control library, move all functionality into meta
+  - [X] rename the meta library to the multiscale library
+  - [ ] instead of creating enum and corresponding strings in the header, write functions to return the strings, and declare the string array within the function, see simAttributes.cc
+  - [ ] move convergence operators out of bioTissueMultiscaleAnalysis.h and into a seperate header, they are not related to multiscale
   - [ ] Look at all apf::MeshIterator loops to make sure Mesh::end(MeshIterator) is called
   - [ ] hide the usage of the simmetrix pACase in building the BCQueries, as well as their application (somehow)
     - [ ] building the BCQueries might need to use some dynamic polymorphism to hide the extra data required for the simmetrix queries (the pACase)
   - [ ] Split template implementation and declaration into xx.h and xx_impl.h files
-  - [ ] Rename the interface library to the analysis library
   - [ ] replace old sparse matrix implementation in biotissue with new one in amsi_red
    - [ ] make standalone lib with test cases
   - [ ] make sure that petsc is not allocating memory on the fly

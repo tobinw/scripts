@@ -2,5 +2,5 @@
 
 tmux new-session -d -s bio -n dev
 tmux select-pane -t 0
-tmux send-keys 'cd ${DEVROOT}/biotissue && svn update .' C-m
-tmux send-keys 'select_random_file $DEVROOT/biotissue/macro/src $DEVROOT/biotissue/micro_fo/src' C-m
+tmux send-keys 'cd ${DEVROOT}/bio && svn update .' C-m
+tmux send-keys 'select_random_file $DEVROOT/bio/macro/src $DEVROOT/bio/micro_fo/src' C-m

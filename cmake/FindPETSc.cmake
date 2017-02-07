@@ -17,14 +17,14 @@ if(NOT PETSC_FOUND)
     PATH_SUFFIXES include)
 
   set(PETSC_INCLUDE_DIRS ${PETSC_PACKAGE_INCLUDES} ${PETSC_INCLUDE_DIR_ONE} ${PETSC_INCLUDE_DIR_TWO})
-  describeVar(PETSC_INCLUDE_DIRS)
+  #describeVar(PETSC_INCLUDE_DIRS)
 
   find_library(PETSC_LIB petsc
     HINTS ${PETSC_DIR}/${PETSC_ARCH}
     PATH_SUFFIXES lib)
 
   set(PETSC_LIBRARIES ${PETSC_LIB} ${PETSC_PACKAGE_LIBS})
-  describeVar(PETSC_LIBRARIES)
+  #describeVar(PETSC_LIBRARIES)
 
   include(FindPackageHandleStandardArgs)
   find_package_handle_standard_args(PETSc DEFAULT_MSG

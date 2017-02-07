@@ -9,6 +9,6 @@ tmux split-window -h
 tmux select-pane -t 0
 tmux send-keys 'emacs $DEVROOT/scripts/todo.org' C-m
 tmux select-pane -t 1
-tmux send-keys 'cd $DEVROOT/biotissue/scripts && ./autobuild.sh' C-m
+tmux send-keys 'cd $DEVROOT/bio/scripts && ./autobuild.sh' C-m
 tmux select-pane -t 2
 tmux send-keys 'cd $DEVROOT/amsi/scripts && ./autobuild.sh' C-m
