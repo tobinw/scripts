@@ -7,8 +7,8 @@
 #
 # Based on input variables:
 #  SIM_MPI
-#  SIMMETRIX_LIB_DIR
-#  SIMMETRIX_INCLUDE_DIR
+#  SIM_LIB_DIR
+#  SIM_INCLUDE_DIR
 # And environment variable:
 #  CMAKE_PREFIX_PATH
 #
@@ -23,17 +23,17 @@ if(SIM_MPI MATCHES "^$")
   message(FATAL_ERROR "SIM_MPI is not defined... libSimPartitionWrapper-$SIM_MPI.a should exist in the SimModSuite lib directory")
 endif()
 
-checkSetParam(SIMMETRIX_LIB_DIR FALSE)
+checkSetParam(SIM_LIB_DIR FALSE)
 
 macro(simLibCheck libs isRequired)
   foreach(lib ${libs})
     unset(simlib CACHE)
-    find_library(simlib "${lib}" PATHS ${SIMMETRIX_LIB_DIR})
+    find_library(simlib "${lib}" PATHS ${SIM_LIB_DIR})
     if(simlib MATCHES "^simlib-NOTFOUND$")
       if(${isRequired})
-        message(FATAL_ERROR "simmetrix library ${lib} not found in ${SIMMETRIX_LIB_DIR}")
-      else()
-        message("simmetrix library ${lib} not found in ${SIMMETRIX_LIB_DIR}")
+        message(FATAL_ERROR "simmetrix library ${lib} not found in ${SIM_LIB_DIR}")
+     else()
+        message("simmetrix library ${lib} not found in ${SIM_LIB_DIR}")
       endif()
     else()
       set("SIMMODSUITE_${lib}_FOUND" TRUE CACHE INTERNAL "SimModSuite library present")
@@ -54,9 +54,9 @@ endmacro(getSimCadLib)
 
 find_path(SIMMODSUITE_INCLUDE_DIR
   NAMES SimUtil.h SimError.h SimModel.h
-  PATHS ${SIMMETRIX_INCLUDE_DIR})
+  PATHS ${SIM_INCLUDE_DIR})
 if(NOT EXISTS "${SIMMODSUITE_INCLUDE_DIR}")
-  message(FATAL_ERROR "simmetrix include dir not found")
+  message(FATAL_ERROR "simmetrix include dir not found in ${SIM_INCLUDE_DIR}")
 endif()
 
 string(REGEX REPLACE
@@ -85,7 +85,7 @@ message(STATUS "SIM_ARCHOS ${SIM_ARCHOS}")
 
 option(SIM_PARASOLID "Use Parasolid through Simmetrix" OFF)
 if (SIM_PARASOLID)
-  getSimCadLib("${SIMMODSUITE_INSTALL_DIR}/lib/${SIM_ARCHOS}" 
+  getSimCadLib("${SIMMODSUITE_INSTALL_DIR}/lib/${SIM_ARCHOS}"
     SimParasolid simParaLib)
   set(SIM_LIB_NAMES
     ${simParaLib}
@@ -94,7 +94,7 @@ endif()
 
 option(SIM_ACIS "Use Acis through Simmetrix" OFF)
 if (SIM_ACIS)
-  getSimCadLib("${SIMMODSUITE_INSTALL_DIR}/lib/${SIM_ARCHOS}" 
+  getSimCadLib("${SIMMODSUITE_INSTALL_DIR}/lib/${SIM_ARCHOS}"
     SimAcis simAcisLib)
   set(SIM_LIB_NAMES
       ${SIM_LIB_NAMES}

@@ -1,8 +1,0 @@
-DEVROOT=/fasttmp/wtobin/develop
-PROJECTS=(AMSI BIO)
-
-AMSI_ROOT=${DEVROOT}/amsi_sim
-AMSI_SRC_DIRS=(util meta interface control)
-
-BIO_ROOT=${DEVROOT}/biotissue
-BIO_SRC_DIRS=(micro_fo/src micro_fm/src macro/src macro/test/SourceMain)
