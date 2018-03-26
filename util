@@ -15,20 +15,6 @@ recreate_directory() {
   rm -rf $1
   mkdir -p $1
 }
-construct_mesh_name() {
-  MESH_NAME=$1
-  if [ "$#" == "3" ] ; then
-    if [ -n "$3" ] ; then
-      MESH_NAME=${MESH_NAME}_${3}
-    fi
-  fi
-  if [ "$2" == "1" ] ; then
-    MESH_NAME=${MESH_NAME}.sms
-  else
-    MESH_NAME=${MESH_NAME}_${2}_parts.sms
-  fi
-  echo $MESH_NAME;
-}
 make_exe_name() {
   if [ "$2" == "debug" ] ; then
     echo "${1}d"

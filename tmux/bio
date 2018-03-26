@@ -1,6 +1,0 @@
-#!/bin/bash
-
-tmux new-session -d -s bio -n dev
-tmux select-pane -t 0
-tmux send-keys 'cd ${DEVROOT}/bio && git pull' C-m
-tmux send-keys 'select_random_file $DEVROOT/bio/macro/src $DEVROOT/bio/micro_fo/src' C-m

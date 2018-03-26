@@ -1,10 +1,9 @@
 #!/bin/bash
-
+# ssh into a host and print a brief synopsis of the state of the machine
 if [  $# != 1 ] ; then
   echo "Usage: $0 [hostname]"
   exit -1
 fi
-
 HOST=$1
 SSH="ssh $HOST"
 timeout 1 ping -c 1 $HOST > /dev/null

@@ -1,7 +1,0 @@
-#!/bin/bash
-
-tmux new-session -d -s amsi -n dev
-tmux select-pane -t 0
-tmux send-keys 'cd ${DEVROOT}/amsi && git pull' C-m
-tmux send-keys 'select_random_file ${DEVROOT}/amsi/util ${DEVROOT}/amsi/meta ${DEVROOT}/amsi/interface ${DEVROOT}/amsi/control' C-m
-

@@ -1,0 +1,38 @@
+#!/bin/bash
+# simple script to add a new test binary to a project and update CMakelists.txt file to add it to the project
+# Use: ./add_mpi_test [dir] [name] [np] '[libs]' '{args...}'
+
+if [ $# -lt 4 ] ; then
+    echo "Usage: ./$0 [dir] [name] [np] '[libs...]' '{args...}'"
+    exit -1;
+fi
+
+DIR=$1
+NAME=$2
+NP=$3
+LIBS=$4
+ARGS=$5
+CMAKE_FILE=CMakeLists.txt
+
+NEW_DIR=false
+if [ -d $1 ] ; then
+  NEW_DIR=true
+else
+  mkdir $DIR
+fi
+
+cd $DIR
+DIR_NAME=${PWD##*/}
+if [ "$NEW_DIR" = true ] ; then
+  cd ..
+  echo "add_subdirectory($DIR_NAME)" >> $CMAKE_FILE
+  cd $DIR
+fi
+
+FILE=${NAME}.cc
+touch $FILE
+
+echo '' >> $CMAKE_FILE
+echo "add_mpi_test($NAME $FILE $NP $ARGS)" >> $CMAKE_FILE
+echo "target_link_libraries($NAME $LIBS)" >> $CMAKE_FILE
+

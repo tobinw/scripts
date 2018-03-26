@@ -1,7 +1,0 @@
-#!/bin/bash
-
-./tmux/qbuild
-./tmux/amsi
-./tmux/bio
-./tmux/autobuild
-./tmux/etc

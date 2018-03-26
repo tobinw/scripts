@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# select a random file from a list of directories
+# ./select_random_file [dir] {dir2 ...}
 SUBDIR=${BASH_ARGV[$RANDOM % $#]}
 FILE=`shuf -n1 -e ${SUBDIR}/*`
-echo "Randomly selected file: $FILE"
+echo "$FILE"
